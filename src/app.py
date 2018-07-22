@@ -13,4 +13,4 @@ login = LoginManager(app)
 login.login_view = 'login'
 
 # bottom import to avoid circular imports
-from app import routers, models
+from src import routers, models

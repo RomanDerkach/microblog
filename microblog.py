@@ -1,5 +1,5 @@
-from app import app, db
-from app.models import User, Post
+from src.app import app, db
+from src.models import User, Post
 
 app.run()
 
