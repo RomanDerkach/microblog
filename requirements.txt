@@ -7,3 +7,4 @@ pylint==1.9.2
 SQLAlchemy==1.2.8
 Werkzeug==0.14.1
 WTForms==2.2.1
+pytest==3.6.3
