@@ -1,16 +1,13 @@
-# src/tests/test_base.py
+"""Test base module contains the base testing"""
 
 import os
-import sys
-import inspect
 import unittest
-import tempfile
 
 from src.app import app, db
 
-basedir = os.path.abspath(os.path.dirname(__file__))
-db_path = os.path.join(basedir, 'test_app.db')
-db_url = 'sqlite:///' + db_path
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
+DBPATH = os.path.join(BASEDIR, 'test_app.db')
+DBURL = 'sqlite:///' + DBPATH
 
 
 class BasicTests(unittest.TestCase):
@@ -19,16 +16,17 @@ class BasicTests(unittest.TestCase):
     print('test')
 
     def setUp(self):
-        app.config["SQLALCHEMY_DATABASE_URI"] = db_url
+        app.config["SQLALCHEMY_DATABASE_URI"] = DBURL
         self.app = app.test_client()
         db.drop_all()
         db.create_all()
         self.assertEqual(app.debug, False)
 
     def tearDown(self):
-        os.unlink(db_path)
+        os.unlink(DBPATH)
 
     def test_main_page(self):
+        """Check the main page fuctionality"""
         response = self.app.get('/', follow_redirects=True)
         self.assertEqual(response.status_code, 200)
 
