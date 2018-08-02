@@ -2,15 +2,15 @@ from werkzeug.urls import url_parse
 from flask import render_template, flash, redirect, url_for, request
 from flask_login import current_user, login_user, logout_user, login_required
 
-from app import app, db
-from app.forms import LoginForm, RegistrationForm
-from app.models import User
+from src.app import app, db
+from src.forms import LoginForm, RegistrationForm
+from src.models import User
+
 
 @app.route('/')
 @app.route('/index')
 @login_required
 def index():
-    user = {'username': 'Roman'}
     posts = [
         {
             'author': {'username': 'John'},
@@ -45,10 +45,12 @@ def login():
 
     return render_template('login.html', title='Sign In', form=form)
 
+
 @app.route('/logout')
 def logout():
     logout_user()
     return redirect(url_for('index'))
+
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
